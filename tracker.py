@@ -24,10 +24,7 @@ def getAllLocs():
 def getFavorites():
     return [j for j in list(locations.find({"f":True}))]
 def checkIfExisting(locationN):
-    locationN = locationN.upper()
-    check = locations.find_one({"locN":locationN})
-    #print("check",check, check == None)
-    return locations.find_one({"locN":locationN}) != None
+    return locations.find_one({"locN":locationN.upper()}) != None
 def sortbyRecent(li):
     return sorted(li, key = lambda x: x["time"], reverse=True) #this somehow works for datetime objects :D
 def sortbyUsage(li):
@@ -47,7 +44,7 @@ for x in sortbyRecent(all):
     print("-------------------------")
     for j in list(x.items())[1:]: #no id
         print(j[0] + ": " + str(j[1]))
-# API endpoints
+# just to print and see whats up yk?
 
 
 cluster.close()
