@@ -38,10 +38,51 @@ def sortbyUsage():
 def sortAlpha():
     all = getAllLocs()
     return sorted(all, key=lambda x: x['locN'])
-if input() == "a":
-    addLoc(input(),True)
-print(getAllLocs())
-print(sortbyUsage())
-print(sortAlpha())
-print(checkIfExisting("rm23321"))
+# API endpoints
+@app.route('/add_location', methods=['POST'])
+def add_location():
+    data = request.json
+    locationN = data.get('locationN')
+    fav = data.get('fav', False)
+    result = addLoc(locationN, fav)
+    return jsonify({"success": result})
+
+@app.route('/remove_location', methods=['POST'])
+def remove_location():
+    data = request.json
+    locationN = data.get('locationN')
+    removeLoc(locationN)
+    return jsonify({"success": True})
+
+@app.route('/get_all_locations', methods=['GET'])
+def get_all_locations():
+    locations = getAllLocs()
+    return jsonify(locations)
+
+@app.route('/get_favorites', methods=['GET'])
+def get_favorites():
+    favorites = getFavorites()
+    return jsonify(favorites)
+
+@app.route('/sort_recent', methods=['GET'])
+def sort_recent():
+    sorted_locations = sortbyRecent()
+    return jsonify(sorted_locations)
+
+@app.route('/sort_usage', methods=['GET'])
+def sort_usage():
+    sorted_locations = sortbyUsage()
+    return jsonify(sorted_locations)
+
+@app.route('/sort_alpha', methods=['GET'])
+def sort_alpha():
+    sorted_locations = sortAlpha()
+    return jsonify(sorted_locations)
+
+
+
+
+
+
+
 cluster.close()
