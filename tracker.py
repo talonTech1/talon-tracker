@@ -43,12 +43,6 @@ def setFavorite(locationN,fav):
     n = locationN.upper()
     locations.update_one({"locN": n}, {"$set": {"f": fav}})
 all = getAllLocs()
-'''removeLoc("media center")
-removeLoc("rm45")
-addLoc("media center",True)
-addLoc("office",True)
-addLoc("smcs hub",False)
-setToCurrentLoc("office")'''
 for x in sortbyRecent(all):
     print("-------------------------")
     for j in list(x.items())[1:]: #no id
