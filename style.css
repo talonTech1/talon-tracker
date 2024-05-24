@@ -1,0 +1,165 @@
+body {
+  background: skyblue;
+}
+h3 {
+  color: black;
+  text-indent: 70px;
+}
+h1 {
+  font-weight: bolder;
+  color: green;
+  text-align: center;
+  font-style: italic;
+
+}
+table{
+  background-color: pink;
+  border = "t";
+  width:100%;
+}
+hr{
+  border-style: groove;
+  border-top-width: 7px;
+  border-bottom-width: 7px;
+  border-top-color:darkred;
+  border-bottom-color: green;
+  border-radius: 10px;
+}
+button {
+  background-color:darkgreen;
+  color:floralwhite;
+  font-size:50px;
+  text-align: center;
+  border-bottom-style: "none";
+  border-color: cornflowerblue;
+  border-width: 5px;
+}
+.title_img{
+  height:100px;
+  width:150px;
+  border-width:12px;
+  border-color:forestgreen;
+  border-style: groove;
+}
+.panoram {
+  width: 500px;
+  height: 150px;
+}
+.center {
+  text-align: center;
+}
+img.body_img {
+  height:125px;
+  border-width: 20px;
+  border-style: solid;
+  border-color: skyblue;
+}
+hr.secondary {
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-top-color:"darkred";
+  border-bottom-color: "green";
+}
+.hero-image {
+  background-image: url(Isle-Royale5.jpg);
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+hr.intro {
+  width: 300px;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-top-color:"darkred";
+  border-bottom-color: "green";
+}
+.spaced {
+  line-height: 2;
+}
+figure {
+  display: table;
+}
+figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  font-size: 10px;
+}
+.figure_left {
+  float: left;
+}
+.figure_right {
+  float: right;
+}
+.figure_center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.useless {
+  font-size: 80px;
+}
+.map {
+  width:1460px;
+  height:730px;
+}
+img.web {
+  width: 1460px;
+}
+.table {
+  width: 200px;
+  height: 150px;
+  float: center;
+}
+button:hover {
+  background-color: skyblue;
+  color:black;
+}
+a:hover {
+  color:darkred;
+}
+
+.btn-group button {
+  background-color: #04AA6D; /* Green background */
+  border: 1px solid green; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+.locations {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 150px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.location {
+  flex: 0 0 calc(33.33% - 10px); /* Adjust width to fit 3 items per row */
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ff69b4;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  background-color: #ffb6c1;
+}

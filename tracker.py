@@ -28,19 +28,19 @@ def checkIfExisting(locationN):
     check = locs.find_one({"locN":locationN})
     #print("check",check, check == None)
     return locs.find_one({"locN":locationN}) != None
-def sortByRecent():
+def sortbyRecent():
     all = getAllLocs()
-    return sorted(all, key=lambda x: x["time"])
+    return sorted(all, key=lambda x: x["time"],reverse = True)
 def sortbyUsage():
     all = getAllLocs()
-    return sorted(all, key=lambda x: x["usage"])
+    return sorted(all, key=lambda x: x["count"], reverse = True)
 def sortAlpha():
     all = getAllLocs()
-    sorted(all, key=lambda x: x['locN'])
+    return sorted(all, key=lambda x: x['locN'])
 if input() == "a":
     addLoc(input(),True)
 print(getAllLocs())
-print(getFavorites())
-print(sortByRecent())
+print(sortbyUsage())
+print(sortAlpha())
 print(checkIfExisting("rm23321"))
 cluster.close()

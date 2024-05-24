@@ -1,1 +1,268 @@
-<button type="button">Click Me!</button>
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Location and Availability App</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                        color: #333;
+                        line-height: 1.6;
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        background-color: #fff0f5;
+                    }
+                    .container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin: 20px;
+                        flex-grow: 1;
+                    }
+                    .widget {
+                        width: 300px;
+                        border: 1px solid #f7c6d9;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        margin-bottom: 20px;
+                        overflow: hidden;
+                        background-color: #ffe4e1;
+                    }
+                    .header {
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        margin: 5px;
+                        border: 1px solid #ff69b4;
+                        border-radius: 5px;
+                        background-color: #ff69b4;
+                        color: white;
+                        text-align: center;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+                    .button:hover {
+                        background-color: #ff85c1;
+                    }
+                    .locations, .favorites {
+                        display: flex;
+                        flex-wrap: wrap;
+                        max-height: 150px;
+                        overflow-y: auto;
+                        margin-bottom: 10px;
+                    }
+                    .location, .favorite {
+                        flex: 1 0 30%;
+                        margin: 5px;
+                        padding: 10px;
+                        border: 1px solid #ff69b4;
+                        text-align: center;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        position: relative;
+                        background-color: #ffb6c1;
+                    }
+                    .availability {
+                        display: none;
+                        margin-top: 20px;
+                    }
+                    .availability input, .availability button {
+                        margin-top: 10px;
+                    }
+                    .sidebar {
+                        position: fixed;
+                        top: 0;
+                        left: -220px;
+                        width: 200px;
+                        height: 100%;
+                        border: 1px solid #f7c6d9;
+                        padding: 20px;
+                        border-radius: 0 8px 8px 0;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        background-color: #ffe4e1;
+                        transition: left 0.3s;
+                        z-index: 1000;
+                    }
+                    .sidebar.open {
+                        left: 0;
+                    }
+                    .sidebar .button {
+                        display: block;
+                        width: 100%;
+                        margin-bottom: 10px;
+                    }
+                    .dropdown {
+                        display: none;
+                        position: absolute;
+                        background-color: white;
+                        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                        z-index: 1;
+                    }
+                    .dropdown-content {
+                        display: block;
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    .dropdown-content:hover {
+                        background-color: #f1f1f1;
+                    }
+                    .open-sidebar-button {
+                        position: fixed;
+                        top: 20px;
+                        left: 20px;
+                        padding: 10px;
+                        border: 1px solid #ff69b4;
+                        border-radius: 5px;
+                        background-color: #ff69b4;
+                        color: white;
+                        cursor: pointer;
+                        z-index: 1001;
+                        transition: background-color 0.3s;
+                    }
+                    .open-sidebar-button:hover {
+                        background-color: #ff85c1;
+                    }
+                    .popup {
+                        display: none;
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 300px;
+                        padding: 20px;
+                        border: 1px solid #f7c6d9;
+                        border-radius: 8px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        background-color: #ffe4e1;
+                        z-index: 1002;
+                    }
+                    .popup .button {
+                        display: inline-block;
+                        width: 45%;
+                        margin: 5px;
+                        text-align: center;
+                    }
+                    .popup .button.cancel {
+                        background-color: #ccc;
+                        border: 1px solid #ccc;
+                    }
+                    .overlay {
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        z-index: 1001;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="open-sidebar-button">☰</div>
+                <div class="sidebar">
+                    <div class="button">+ Add Location</div>
+                    <div class="dropdown-content">Sort by Recentness</div>
+                    <div class="dropdown-content">Sort by Usage</div>
+                    <div class="dropdown-content">Sort Alphabetically</div>
+                    <div class="dropdown-content">Display Favorites</div>
+                </div>
+                <div class="container">
+                    <div class="widget">
+                        <div class="header">
+                            <div class="location">Location</div>
+                            <div class="time-avail">Time Avail.</div>
+                        </div>
+                        <div class="favorites">
+                            <div class="favorite">Fav 1</div>
+                            <div class="favorite">Fav 2</div>
+                            <div class="favorite">Fav 3</div>
+                        </div>
+                        <div class="locations">
+                            <div class="location">Loc 1</div>
+                            <div class="location">Loc 2</div>
+                            <div class="location">Loc 3</div>
+                            <div class="location">Loc 4</div>
+                            <div class="location">Loc 5</div>
+                            <div class="location">Loc 6</div>
+                        </div>
+                        <div class="button" id="set-availability-button">Set Availability</div>
+                    </div>
+                    <div class="availability">
+                        <div>Current Availability:</div>
+                        <input type="text" placeholder="Enter Availability">
+                        <button class="button">Set</button>
+                        <button class="button cancel">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="overlay"></div>
+
+                <div class="popup" id="availability-popup">
+                    <div>Set Availability</div>
+                    <input type="text" placeholder="Enter Availability">
+                    <div>
+                        <button class="button set">Set</button>
+                        <button class="button cancel">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="popup" id="location-popup">
+                    <div>Location Options</div>
+                    <div class="button set">Set Availability</div>
+                    <div class="button add">Add to Favorites</div>
+                    <div class="button remove">Remove</div>
+                    <div class="button cancel">Cancel</div>
+                </div>
+
+                <script>
+                    const openSidebarButton = document.querySelector('.open-sidebar-button');
+                    const sidebar = document.querySelector('.sidebar');
+                    const setAvailabilityButton = document.getElementById('set-availability-button');
+                    const availabilityPopup = document.getElementById('availability-popup');
+                    const locationPopup = document.getElementById('location-popup');
+                    const overlay = document.querySelector('.overlay');
+                    const locationDivs = document.querySelectorAll('.location, .favorite');
+                    const cancelButtons = document.querySelectorAll('.cancel');
+
+                    openSidebarButton.addEventListener('click', () => {
+                        sidebar.classList.toggle('open');
+                    });
+
+                    setAvailabilityButton.addEventListener('click', () => {
+                        availabilityPopup.style.display = 'block';
+                        overlay.style.display = 'block';
+                    });
+
+                    locationDivs.forEach(locationDiv => {
+                        locationDiv.addEventListener('click', () => {
+                            locationPopup.style.display = 'block';
+                            overlay.style.display = 'block';
+                        });
+                    });
+
+                    cancelButtons.forEach(cancelButton => {
+                        cancelButton.addEventListener('click', () => {
+                            availabilityPopup.style.display = 'none';
+                            locationPopup.style.display = 'none';
+                            overlay.style.display = 'none';
+                        });
+                    });
+
+                    overlay.addEventListener('click', () => {
+                        availabilityPopup.style.display = 'none';
+                        locationPopup.style.display = 'none';
+                        overlay.style.display = 'none';
+                    });
+                </script>
+            </body>
+            </html>
