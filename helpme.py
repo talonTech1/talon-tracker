@@ -38,7 +38,6 @@ def sortAlpha():
     all = getAllLocs()
     sorted(all, key=lambda x: x['locN'])
 if input() == "a":
-    print("cha cha")
     addLoc(input(),True)
 print(getAllLocs())
 print(getFavorites())
