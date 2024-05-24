@@ -38,13 +38,10 @@ def sortbyUsage():
 def sortAlpha():
     all = getAllLocs()
     return sorted(all, key=lambda x: x['locN'])
+def setFavorite(locationN,fav):
+    n = locationN.upper()
+    locs.update_one({"locN": n}, {"$set": {"f": fav}})
 # API endpoints
-@app.route('/add_location', methods=['POST'])
-def add_location():
-    data = request.json
-    locationN = data.get('locationN')
-    fav = data.get('fav', False)
-    result = addLoc(locationN, fav)
-    return jsonify({"success": result})
+
 
 cluster.close()
