@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from datetime import datetime
+from flask import Flask, request, jsonify
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
 locs = db["Locations"]
