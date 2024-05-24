@@ -17,7 +17,7 @@ def addLoc(locationN, fav = False):
         locs.update_one({"locN": n}, {"$set": {"time":d}})
         return False
 
-    add = {"locN":n,"time":d,"count":0,"f":fav}
+    add = {"locN":n,"time":d,"count":1,"f":fav}
     locs.insert_one(add)
     return True
 def getAllLocs():
