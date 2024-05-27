@@ -32,7 +32,7 @@ def sortbyUsage(li):
     #return (list(locations.find().sort("count")))
     return sorted(li, key = lambda x: x["count"], reverse=True)
 def sortAlpha(li):
-    #return (list(locations.find().sort("locN")))
+    # return (list(locations.find().sort("locN")))
     return sorted(li, key = lambda x: x['locN'])
 def setToCurrentLoc(locationN):
     n = locationN.upper()
