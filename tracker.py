@@ -8,17 +8,6 @@ locations = db["Locations"]
 
 def removeLoc(locationN):
     locations.delete_one({"locN" : locationN.upper()})
-def addLoc(locationN, fav = False):
-    n = locationN.upper()
-    d = datetime.now()
-
-    if checkIfExisting(locationN):
-        setToCurrentLoc(n)
-        return False
-
-    add = {"locN":n,"time":d,"count":1,"f":fav}
-    locations.insert_one(add)
-    return True
 def getAllLocs():
     return [i for i in list(locations.find())]
 def getFavorites():
@@ -39,14 +28,29 @@ def setToCurrentLoc(locationN):
     currentCount = locations.find_one({"locN":n})["count"]
     locations.update_one({"locN": n}, {"$set": {"time": datetime.now()}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
+    locations.update_one({"current": True}, {"$set": {"current": False}})
+    locations.update_one({"locN": n}, {"$set": {"current": True}})
+def addLoc(locationN, fav = False):
+    n = locationN.upper()
+    d = datetime.now()
+
+    if checkIfExisting(locationN):
+        setToCurrentLoc(n)
+        return False
+    try:
+        locations.update_one({"current": True}, {"$set": {"current": False}})
+    except:
+        pass
+    add = {"locN":n,"time":d,"count":1,"f":fav,"current":True}
+    locations.insert_one(add)
+    return True
 def setFavorite(locationN,fav):
     n = locationN.upper()
     locations.update_one({"locN": n}, {"$set": {"f": fav}})
-all = getAllLocs()
-for x in sortbyRecent(all):
-    print("-------------------------")
-    for j in list(x.items())[1:]: #no id
-        print(j[0] + ": " + str(j[1]))
+addLoc("media center")
+addLoc("rm345")
+addLoc("smcs hub")
+addLoc("out")
 # just to print and see whats up yk?
 
 
