@@ -26,10 +26,10 @@ def getFavorites():
 def checkIfExisting(locationN):
     return locations.find_one({"locN":locationN.upper()}) != None
 def sortbyRecent(li):
-    #return (list(locations.find().sort("time")))
+    # return (list(locations.find().sort("time")))
     return sorted(li, key = lambda x: x["time"], reverse=True) #this somehow works for datetime objects :D
 def sortbyUsage(li):
-    #return (list(locations.find().sort("count")))
+    # return (list(locations.find().sort("count")))
     return sorted(li, key = lambda x: x["count"], reverse=True)
 def sortAlpha(li):
     # return (list(locations.find().sort("locN")))
