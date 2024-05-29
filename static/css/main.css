@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+    margin:0
+    font-family: sans-serif;
+    width = auto;
+    font-size: 30px;
+}
+button {
+    background-color: #f0ead6;
+    border: 1px #f0ead6;
+    font-family: times;
+    text-align: center;
+    font-size: 35px;
+}
+button.current{
+    font-weight: bold;
+    background-color: #d9cca3;
+    border: 2px #f0ead6;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 55px;
+}
+td {
+    text-align: center;
+    height: 75px
+}
