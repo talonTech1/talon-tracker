@@ -6,7 +6,7 @@ body {
     font-size: 30px;
 }
 button {
-    background-color: #ff4a89;
+    background-color: #FF8FAB;
     border: 1px #f0ead6;
     font-family: times;
     text-align: center;
@@ -14,13 +14,13 @@ button {
 }
 button.current{
     font-weight: bold;
-    background-color: #cc5b82;
+    background-color: #FF8FAB;
     border: 2px #f0ead6;
     font-family: sans-serif;
     text-align: center;
-    font-size: 55px;
+    font-size: 45px;
 }
 td {
     text-align: center;
-    height: 75px
+    height: 65px
 }
