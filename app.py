@@ -1,11 +1,17 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for,request,redirect,flash,session
 app = Flask(__name__)
 from pymongo import MongoClient
 from datetime import datetime
+from os import urandom
 from time import sleep
+from functools import wraps
+app.secret_key = 'my precious'
+
+# login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
 locations = db["Locations"]
+
 f1 = False
 r1 = False
 u1 = False
@@ -58,7 +64,33 @@ def sortbyUsage(li):
 def sortbyRecent(li):
     # return (list(locations.find().sort("time")))
     return sorted(li, key = lambda x: x["time"])
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to login first.')
+            return redirect(url_for('login'))
+    return wrap
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['password'] != 'blair':
+            error = 'Invalid. Try Again.'
+        else:
+            session['logged_in'] = True
+            flash('You were logged in.')
+            return redirect('/')
+    return render_template('login.html', error=error)
+
 @app.route("/", methods= ["POST","GET"])
+@login_required
 def index():
     global f1
     global r1
@@ -137,6 +169,8 @@ def index():
         return render_template('index.html', fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
                                current=locations.find_one({"current": True}))
     return render_template('index.html',fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
