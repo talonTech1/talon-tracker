@@ -1,15 +1,12 @@
 from flask import Flask,render_template,request,url_for,request,redirect,flash,session
 app = Flask(__name__)
 from pymongo import MongoClient
-from datetime import datetime,timezone
+from datetime import datetime
 from time import sleep
-import pytz
 from functools import wraps
 local_tz = pytz.timezone('America/New_York')
 app.secret_key = 'my precious'
-def utc_to_local(utc_dt):
-    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
-    return local_tz.normalize(local_dt) # .normalize might be unnecessary
+
 # login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
@@ -28,15 +25,17 @@ def removeCurrent(locationN):
     locations.update_one({"locN": locationN.upper()}, {"$set": {"current": False}})
 def setToCurrentLoc(locationN):
     n = locationN.upper()
+    d = datetime.now()
+    d.replace(hour=d.hour - 4)
     currentCount = locations.find_one({"locN":n})["count"]
-    locations.update_one({"locN": n}, {"$set": {"time": utc_to_local(datetime.now())}})
+    locations.update_one({"locN": n}, {"$set": {"time": d}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
     locations.update_one({"current": True}, {"$set": {"current": False}})
     locations.update_one({"locN": n}, {"$set": {"current": True}})
 def addLoc(locationN, fav = False):
     n = locationN.upper()
-    d = utc_to_local(datetime.now())
-
+    d = datetime.now()
+    d.replace(hour = d.hour - 4)
     if checkIfExisting(locationN):
         setToCurrentLoc(n)
         return False
