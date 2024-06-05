@@ -86,6 +86,15 @@
                 </form>
             </td>
     </table>
+    {% else %}
+    <table style = "width: 1020px" bgcolor = "black">
+        <tr bgcolor = "#cc5b82">
+            <td style = "font-size: 50px">
+                No Current Location Set
+            </td>
+        </tr>
+    </table>
+    {% endif %}
     <table>
         <tr>
             <td>
@@ -96,16 +105,6 @@
                 </form>
             </td>
     </table>
-
-    {% else %}
-    <table style = "width: 1020px" bgcolor = "black">
-        <tr bgcolor = "#cc5b82">
-            <td style = "font-size: 50px">
-                No Current Location Set
-            </td>
-        </tr>
-    </table>
-    {% endif %}
     <br>
     <table bgcolor = "black">
         {% for loc in locs %}
