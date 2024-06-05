@@ -3,11 +3,13 @@ app = Flask(__name__)
 from pymongo import MongoClient
 from datetime import datetime,timezone
 from time import sleep
-
+import pytz
 from functools import wraps
+local_tz = pytz.timezone('America/New_York')
 app.secret_key = 'my precious'
 def utc_to_local(utc_dt):
-    return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
+    local_dt = utc_dt.replace(tzinfo=pytz.utc).astimezone(local_tz)
+    return local_tz.normalize(local_dt) # .normalize might be unnecessary
 # login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
