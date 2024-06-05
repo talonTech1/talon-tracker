@@ -6,7 +6,7 @@ body {
     font-size: 30px;
 }
 button {
-    background-color: #f0ead6;
+    background-color: #ff4a89;
     border: 1px #f0ead6;
     font-family: times;
     text-align: center;
@@ -14,7 +14,7 @@ button {
 }
 button.current{
     font-weight: bold;
-    background-color: #d9cca3;
+    background-color: #cc5b82;
     border: 2px #f0ead6;
     font-family: sans-serif;
     text-align: center;
