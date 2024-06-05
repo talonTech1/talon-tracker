@@ -23,9 +23,15 @@
             </th>
             <th>
                 <form action = "/" method="post">
-                    <button name = "showUsage" value = True style = "background-color: #cc5b82">
-                        WIP use
+                    {% if not use %}
+                    <button name = "showUsage" value = "T" style = "background-color: #cc5b82">
+                        Usage
                     </button>
+                    {% else %}
+                    <button name = "showUsage" value = "F" style = "background-color: #cc5b82">
+                        Back
+                    </button>
+                    {% endif %}
                 </form>
             </th>
             <th>
@@ -47,7 +53,7 @@
     {% if current %}
     <table bgcolor = "black" style = "border: 2px solid">
         <tr bgcolor = "#cc5b82">
-            <td width = "340" style = "font-size: 50px">
+            <td width = "340" height = "200" style = "font-size: 30px">
                 <form action = "/" method="post">
                 <button name = "setCurrent" value = "{{current['locN']}}F" class = "current" style = "background-color: #cc5b82">
                     {{current['locN']}}
@@ -55,7 +61,7 @@
                 </form>
             </td>
 
-            <td width = "400" style = "font-size: 50px">
+            <td width = "300" style = "font-size: 45px">
 
                 <b> {{current['time'].strftime("%m/%d, %H:%M")}} </b>
             </td>
@@ -66,7 +72,7 @@
                     <button class = "current" name = "setFav" value ="{{ current['locN'] }}F" >
                     ❤
                         </button>
-                {% else %} <button name = "setFav" value ="{{ current['locN'] }}T">
+                {% else %} <button class = "current" name = "setFav" value ="{{ current['locN'] }}T">
                     ♡
                         </button>
                 {% endif %}
@@ -89,16 +95,6 @@
                 </button>
                 </form>
             </td>
-            </tr>
-        <tr>
-            <td>
-                <form action = "/" method="post">
-                <button name = "addLoc" value = True style = "background-color: #ff508d; border: 4px solid black">
-                Availible
-                </button>
-                </form>
-            </td>
-        </tr>
     </table>
 
     {% else %}
