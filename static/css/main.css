@@ -1,14 +1,14 @@
 body {
     text-align: center;
     margin:0
-    font-family: sans-serif;
+    font-family: serif;
     width = auto;
     font-size: 30px;
 }
 button {
     background-color: #FF8FAB;
     border: 1px #f0ead6;
-    font-family: times;
+    font-family: serif;
     text-align: center;
     font-size: 35px;
 }
@@ -16,7 +16,7 @@ button.current{
     font-weight: bold;
     background-color: #FF8FAB;
     border: 2px #f0ead6;
-    font-family: sans-serif;
+    font-family: serif;
     text-align: center;
     font-size: 45px;
 }
