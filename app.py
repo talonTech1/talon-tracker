@@ -63,7 +63,7 @@ def index():
     global f1
     global r1
     global u1
-    sleep(0.2)
+    sleep(0.15)
     if request.method == "POST":
         try:
             if request.form['addLoc']:
@@ -116,36 +116,28 @@ def index():
                     r1 = False
         except:
             pass
+        try:
+            if request.form["showUsage"]:
+                if request.form["showUsage"] == "T":
+                    r1 = False
+                    f1 = False
+                    u1 = True
+                else:
+                    u1 = False
+        except:
+            pass
     if f1:
-        return render_template('index.html', fav=f1, use=False, recent=r1, locs=reversed(list(locations.find({"f": True}))),
+        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
                                current=locations.find_one({"current": True}))
 
     elif r1:
-        return render_template('index.html', fav=f1, use=False, recent=r1, locs=sortbyRecent(list(locations.find())),
+        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
                                current=locations.find_one({"current": True}))
-
-    return render_template('index.html',fav=f1,use=False,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
+    elif u1:
+        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
+                               current=locations.find_one({"current": True}))
+    return render_template('index.html',fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
 
 if __name__ == "__main__":
     app.run(debug=True)
     cluster.close()
-
-'''
-def removeLoc(locationN):
-    locations.delete_one({"locN" : locationN.upper()})
-def getAllLocs():
-    return [i for i in list(locations.find())]
-def getFavorites():
-    return [j for j in list(locations.find({"f":True}))]
-def checkIfExisting(locationN):
-    return locations.find_one({"locN":locationN.upper()}) != None
-def sortbyRecent(li):
-    # return (list(locations.find().sort("time")))
-    return sorted(li, key = lambda x: x["time"], reverse=True) #this somehow works for datetime objects :D
-def sortbyUsage(li):
-    # return (list(locations.find().sort("count")))
-    return sorted(li, key = lambda x: x["count"], reverse=True)
-def sortAlpha(li):
-    # return (list(locations.find().sort("locN")))
-    return sorted(li, key = lambda x: x['locN'])
-'''
