@@ -171,6 +171,12 @@ def index():
     return render_template('index.html',fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
 
 
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out.')
+    return redirect('/')
 
 if __name__ == "__main__":
     app.run(debug=True)
