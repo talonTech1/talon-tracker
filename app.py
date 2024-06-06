@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from time import sleep
 from functools import wraps
+import pytz
 local_tz = pytz.timezone('America/New_York')
 app.secret_key = 'my precious'
 
