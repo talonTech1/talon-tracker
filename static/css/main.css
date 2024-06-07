@@ -6,21 +6,31 @@ body {
     font-size: 30px;
 }
 button {
-    background-color: #FF8FAB;
+    color: white;
+    background-color: #000000;
     border: 1px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 35px;
+    font-size: 40px;
+    border-radius: 10px;
 }
 button.current{
+
+    color: white;
     font-weight: bold;
-    background-color: #FF8FAB;
+    background-color: #000000;
     border: 2px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 45px;
+    font-size: 40px;
+    border-radius: 10px;
 }
 td {
     text-align: center;
-    height: 65px
+    height: 65px;
+}
+table {
+  border-collapse: separate;
+  border-radius: 10px;
+  border: 2px solid #E8175D;
 }
