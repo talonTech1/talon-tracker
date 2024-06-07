@@ -13,6 +13,7 @@ cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontra
 db = cluster["Tracker"]
 locations = db["Locations"]
 
+
 f1 = False
 r1 = False
 u1 = False
@@ -33,6 +34,7 @@ def setToCurrentLoc(locationN):
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
     locations.update_one({"current": True}, {"$set": {"current": False}})
     locations.update_one({"locN": n}, {"$set": {"current": True}})
+
 def addLoc(locationN, fav = False):
     n = locationN.upper()
     d = datetime.now()
@@ -55,7 +57,7 @@ def sortbyUsage(li):
     return sorted(li, key = lambda x: x["count"], reverse=True)
 def sortbyRecent(li):
     # return (list(locations.find().sort("time")))
-    return sorted(li, key = lambda x: x["time"])
+    return sorted(li, key = lambda x: x["time"],reverse=True)
 
 def login_required(f):
     @wraps(f)
