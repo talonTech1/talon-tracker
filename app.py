@@ -4,8 +4,6 @@ from pymongo import MongoClient
 from datetime import datetime
 from time import sleep
 from functools import wraps
-import pytz
-local_tz = pytz.timezone('America/New_York')
 app.secret_key = 'my precious'
 
 # login required decorator
@@ -28,7 +26,6 @@ def removeCurrent(locationN):
 def setToCurrentLoc(locationN):
     n = locationN.upper()
     d = datetime.now()
-    d.replace(hour=d.hour - 4)
     currentCount = locations.find_one({"locN":n})["count"]
     locations.update_one({"locN": n}, {"$set": {"time": d}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
