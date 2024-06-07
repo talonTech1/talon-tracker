@@ -38,7 +38,6 @@ def setToCurrentLoc(locationN):
 def addLoc(locationN, fav = False):
     n = locationN.upper()
     d = datetime.now()
-    d.replace(hour = d.hour - 4)
     if checkIfExisting(locationN):
         setToCurrentLoc(n)
         return False
