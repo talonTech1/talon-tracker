@@ -5,43 +5,43 @@
 
 {% block body %}
 <div align = "center">
-    <h1>Where's Ms. Blair?</h1>
-    <table bgcolor = "black">
-        <tr bgcolor = "#fa7aa7">
-            <th>
+    <h1>WHERE'S MS. BLAIR?</h1>
+    <table bgcolor = "#000000" style = "border-collapse: separate;border: 0px solid #E8175D;">
+        <tr bgcolor = "#000000">
+            <th style = "padding: 10px;">
                 <form action = "/" method="post">
                     {% if not fav %}
-                    <button name = "showFavs" value = "T" style = "background-color: #FF8FAB">
+                    <button name = "showFavs" value = "T" style = "background-color: #E8175D">
                         Favorites
                     </button>
                     {% else %}
-                    <button name = "showFavs" value = "F" style = "background-color: #FF8FAB">
+                    <button name = "showFavs" value = "F" style = "background-color: #E8175D">
                         Back
                     </button>
                     {% endif %}
                 </form>
             </th>
-            <th>
+            <th style = "padding: 10px;">
                 <form action = "/" method="post">
                     {% if not use %}
-                    <button name = "showUsage" value = "T" style = "background-color: #FF8FAB">
+                    <button name = "showUsage" value = "T" style = "background-color: #E8175D">
                         Usage
                     </button>
                     {% else %}
-                    <button name = "showUsage" value = "F" style = "background-color: #FF8FAB">
+                    <button name = "showUsage" value = "F" style = "background-color: #E8175D">
                         Back
                     </button>
                     {% endif %}
                 </form>
             </th>
-            <th>
+            <th style = "padding: 10px;">
                 <form action = "/" method="post">
                     {% if not recent %}
-                    <button name = "showRecents" value = "T" style = "background-color: #FF8FAB">
+                    <button name = "showRecents" value = "T" style = "background-color: #E8175D">
                         Recency
                     </button>
                     {% else %}
-                    <button name = "showRecents" value = "F" style = "background-color: #FF8FAB">
+                    <button name = "showRecents" value = "F" style = "background-color: #E8175D">
                         Back
                     </button>
                     {% endif %}
@@ -51,21 +51,21 @@
     </table>
     <br>
     {% if current %}
-    <table bgcolor = "black" style = "border: 2px solid">
-        <tr bgcolor = "#FF8FAB">
-            <td width = "340" height = "200" style = "font-size: 30px">
+    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D">
+        <tr bgcolor = "#000000">
+            <td width = "330">
                 <form action = "/" method="post">
-                <button name = "setCurrent" value = "{{current['locN']}}F" class = "current" style = "background-color: #FF8FAB">
+                <button name = "setCurrent" value = "{{current['locN']}}F" class = "current">
                     {{current['locN']}}
                 </button>
                 </form>
             </td>
 
-            <td width = "300" style = "font-size: 45px">
+            <td width = "330" style = "font-size: 40px">
 
-                <b> {{current['time'].strftime("%m/%d, %H:%M")}} </b>
+                {{current['time'].strftime("%m/%d, %H:%M")}}
             </td>
-            <td width = "100">
+            <td width = "80">
                 <form action = "/" method="post">
                     <!-- should be made icons later, these are just placeholder -->
                 {% if current['f'] %}
@@ -78,7 +78,7 @@
                 {% endif %}
                 </form>
             </td>
-            <td width = "100">
+            <td width = "80">
                 <form action = "/" method="post">
                     <button class = "current" name = "remove" value ="{{ current['locN'] }}" >
                     🗑️
@@ -87,31 +87,33 @@
             </td>
     </table>
     {% else %}
-    <table style = "width: 860px;border-width:3px;border-color:black;border-style:solid;" bgcolor = "black" >
+    <table style = "width: 860px;border-width:3px;border-color:#E8175D;border-style:solid;" bgcolor = "#E8175D" >
 
 
-        <tr bgcolor = "#FF8FAB" height = "70">
+        <tr bgcolor = "#000000" height = "70">
             <td style = "font-size: 50px" >
-                <b> No Location Set </b>
+                <b>No Location/Unavailable</b>
             </td>
         </tr>
     </table>
     {% endif %}
-    <table>
+    <br>
+    <table bgcolor = "#E8175D">
         <tr>
             <td>
                <form action = "/" method="post">
-                <button name = "addLoc" value = True style = "background-color: #FF8FAB; border: 4px solid black; font-size: 55px">
+                <button name = "addLoc" value = True style = "background-color: #E8175D; border: 4px solid black; font-size: 45px">
                 Add Location
                 </button>
                 </form>
             </td>
+        </tr>
     </table>
     <br>
-    <table bgcolor = "black">
+    <table bgcolor = "#E8175D">
         {% for loc in locs %}
         {% if not loc['current'] %}
-            <tr bgcolor = "#FF8FAB">
+            <tr bgcolor = "#000000">
 
             <td width = "300">
                 <form action = "/" method="post">
