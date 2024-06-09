@@ -4,10 +4,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="flex-container">
-
+<div align = "center">
     <h1>WHERE'S MS. BLAIR?</h1>
-    <div class = "filters">
     <table bgcolor = "#000000" style = "border-collapse: separate;border: 0px solid #E8175D;">
         <tr bgcolor = "#000000">
             <th style = "padding: 10px;">
@@ -51,8 +49,6 @@
             </th>
         </tr>
     </table>
-    </div>
-    <div class = "current-row">
     <br>
     {% if current %}
     <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D">
@@ -94,15 +90,13 @@
     <table style = "width: 860px;border-width:3px;border-color:#E8175D;border-style:solid;" bgcolor = "#E8175D" >
 
 
-        <tr bgcolor = "#000000">
+        <tr bgcolor = "#000000" height = "70">
             <td style = "font-size: 50px" >
                 <b>No Location/Unavailable</b>
             </td>
         </tr>
     </table>
     {% endif %}
-    </div>
-    <div class = "addButton">
     <br>
     <table bgcolor = "#E8175D">
         <tr>
@@ -115,9 +109,7 @@
             </td>
         </tr>
     </table>
-    </div>
     <br>
-    <div class = "locations">
     <table bgcolor = "#E8175D">
         {% for loc in locs %}
         {% if not loc['current'] %}
@@ -130,11 +122,11 @@
                 </button>
                 </form>
             </td>
-            <td>
+            <td width = "300">
 
                 {{loc['time'].strftime("%m/%d, %H:%M")}}
             </td>
-            <td>
+            <td width = "80">
                 <form action = "/" method="post">
                 {% if loc['f'] %}
                     <button name = "setFav" value ="{{ loc['locN'] }}F">
@@ -146,7 +138,7 @@
                 {% endif %}
                 </form>
             </td>
-            <td>
+            <td width = "80">
                 <form action = "/" method="post">
                     <button name = "remove" value ="{{ loc['locN'] }}">
                     🗑️
@@ -157,7 +149,7 @@
         {% endif %}
         {% endfor %}
     </table>
-    </div>
+
 
 </div>
 {% endblock %}
