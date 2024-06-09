@@ -4,8 +4,15 @@
 {% endblock %}
 
 {% block body %}
-<div align = "center" style="margin:10px;">
-    <h1 align = "center">WHERE'S MS. BLAIR?</h1>
+<div align = "center">
+    <table style = "border: 0px">
+        <tr align = "center">
+            <td>
+                <h1 align = "center">WHERE'S MS. BLAIR?</h1>
+            </td>
+        </tr>
+    </table>
+
     <table bgcolor = "#000000" style = "border-collapse: separate;border: 0px solid #E8175D;">
         <tr bgcolor = "#000000">
             <th style = "padding: 8px;">
@@ -98,11 +105,19 @@
     </table>
     {% endif %}
     <br>
+    <table style = "border: 0px">
+        <tr>
+            <td>
+
+
        <form action = "/" method="post">
         <button name = "addLoc" value = True style = "background-color: #E8175D; border: 3px solid black; font-size: 45px;;" >
         Add Location
         </button>
         </form>
+            </td>
+        </tr>
+    </table>
     <br>
     <table bgcolor = "#E8175D">
         {% for loc in locs %}
