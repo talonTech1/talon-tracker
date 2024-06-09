@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block body %}
-<div align = "center">
-    <h1>WHERE'S MS. BLAIR?</h1>
+<div align = "center" style="margin:10px;">
+    <h1 align = "center">WHERE'S MS. BLAIR?</h1>
     <table bgcolor = "#000000" style = "border-collapse: separate;border: 0px solid #E8175D;">
         <tr bgcolor = "#000000">
-            <th style = "padding: 10px;">
+            <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not fav %}
                     <button name = "showFavs" value = "T" style = "background-color: #E8175D">
@@ -21,7 +21,7 @@
                     {% endif %}
                 </form>
             </th>
-            <th style = "padding: 10px;">
+            <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not use %}
                     <button name = "showUsage" value = "T" style = "background-color: #E8175D">
@@ -34,7 +34,7 @@
                     {% endif %}
                 </form>
             </th>
-            <th style = "padding: 10px;">
+            <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not recent %}
                     <button name = "showRecents" value = "T" style = "background-color: #E8175D">
@@ -51,7 +51,7 @@
     </table>
     <br>
     {% if current %}
-    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D">
+    <table bgcolor = "#E8175D" style = "border: 6px solid #E8175D">
         <tr bgcolor = "#000000">
             <td width = "330">
                 <form action = "/" method="post">
@@ -98,17 +98,11 @@
     </table>
     {% endif %}
     <br>
-    <table bgcolor = "#E8175D">
-        <tr>
-            <td>
-               <form action = "/" method="post">
-                <button name = "addLoc" value = True style = "background-color: #E8175D; border: 4px solid black; font-size: 45px">
-                Add Location
-                </button>
-                </form>
-            </td>
-        </tr>
-    </table>
+       <form action = "/" method="post">
+        <button name = "addLoc" value = True style = "background-color: #E8175D; border: 3px solid black; font-size: 45px;;" >
+        Add Location
+        </button>
+        </form>
     <br>
     <table bgcolor = "#E8175D">
         {% for loc in locs %}
