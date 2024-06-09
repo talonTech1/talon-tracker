@@ -1,28 +1,6 @@
-.flex-container {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-direction: column;
-  justify-content: start;
-}
-.filters{
-    min-height: 40px;
-}
-.current-row{
-    min-width: 430px;
-}
-.addButton{
-    flex-grow: 5;
-}
-.locations{
-   width: 450px;
-   flex-grow: 1;
-}
-
-
 body {
     text-align: center;
-    margin:0
+    margin:auto;
     font-family: serif;
     width = auto;
     font-size: 30px;
