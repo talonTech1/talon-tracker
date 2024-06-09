@@ -32,6 +32,6 @@ td {
 table {
   border-collapse: separate;
   border-radius: 10px;
-  width: device-width;
+  width: device-height;
   border: 2px solid #E8175D;
 }
