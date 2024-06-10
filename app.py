@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from time import sleep
 from functools import wraps
+from calendar import monthrange
 app.secret_key = 'my precious'
 
 # login required decorator
@@ -16,7 +17,19 @@ f1 = False
 r1 = False
 u1 = False
 #chrome://net-internals/#sockets
+def convertUTC(dt):
+    # datetime(year, month, day, hour, minute, second, microsecond)
+    newH = dt.hour - 4
+    y,m,d,minute = dt.year,dt.month,dt.day,dt.minute
+    if newH < 0:
+        newH = 24- newH
+        if dt.day < 0:
+            if dt.month < 0:
+                m = 12
+                y -= 1
+            d = monthrange(y,m)
 
+    return datetime(y,m,d,newH,minute)
 def removeLoc(locationN):
     locations.delete_one({"locN" : locationN.upper()})
 def checkIfExisting(locationN):
@@ -25,7 +38,7 @@ def removeCurrent(locationN):
     locations.update_one({"locN": locationN.upper()}, {"$set": {"current": False}})
 def setToCurrentLoc(locationN):
     n = locationN.upper()
-    d = datetime.now()
+    d = convertUTC(datetime.utcnow())
     currentCount = locations.find_one({"locN":n})["count"]
     locations.update_one({"locN": n}, {"$set": {"time": d}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
@@ -34,7 +47,7 @@ def setToCurrentLoc(locationN):
 
 def addLoc(locationN, fav = False):
     n = locationN.upper()
-    d = datetime.now()
+    d = convertUTC(datetime.utcnow())
     if checkIfExisting(locationN):
         setToCurrentLoc(n)
         return False
