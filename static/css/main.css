@@ -1,3 +1,21 @@
+.phone-screen {
+  width: 100%;
+  max-width: 500px;
+  height: 90vh;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  color: #f6f6f6;
+  background-color: #000000;
+}
+
+
+
+
+
+
+
+
 body {
     text-align: center;
     margin:0
@@ -5,14 +23,18 @@ body {
     width = auto;
     font-size: 30px;
 }
+
 button {
     color: white;
     background-color: #000000;
     border: 1px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 40px;
+    font-size: 28px;
     border-radius: 10px;
+}
+button.top {
+    font-size: 35px;
 }
 button.current{
     color: white;
@@ -21,15 +43,16 @@ button.current{
     border: 2px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 40px;
-    border-radius: 10px;
+    font-size: 35px;
+    border-radius: 12px;
 }
 td {
     text-align: center;
     height: 65px;
+    font-size: 28px
 }
 table {
   border-collapse: separate;
-  border-radius: 10px;
-  border: 2px solid #E8175D;
+  border-radius: 12px;
+  border: 3px solid #E8175D;
 }
