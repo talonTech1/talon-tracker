@@ -1,13 +1,10 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    text-align: center;
+    margin:0
+    font-family: serif;
+    width = auto;
+    font-size: 30px;
 }
-
 button {
     color: white;
     background-color: #000000;
@@ -18,7 +15,6 @@ button {
     border-radius: 10px;
 }
 button.current{
-
     color: white;
     font-weight: bold;
     background-color: #000000;
@@ -35,6 +31,5 @@ td {
 table {
   border-collapse: separate;
   border-radius: 10px;
-  width: device-height;
   border: 2px solid #E8175D;
 }
