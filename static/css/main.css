@@ -9,32 +9,29 @@
     justify-content: space-around;
 }
 .bar {
-    width: 100%;
-    height: 30%;
+    width: auto;
     max-width: 500px;
-    flex: 50%;
-    justify-content: center;
 }
 .cur {
-    width: 100%;
+    width: auto;
     max-width: 500px;
-    flex: 50%;
     height: 400px;
+    flex: 100%;
 }
 .add {
-    width: 100%;
+    width: auto;
     max-width: 500px;
     flex: 50%;
     height: 100px;
 }
 .show {
-    width: 100%;
+    width: auto;
     max-width: 500px;
     flex: 50%;
     height: 100px;
 }
 .locations {
-    width: 100%;
+    width: auto;
     max-width: 500px;
     flex: 50%;
     height: 100px;
@@ -63,6 +60,7 @@ button {
 }
 button.top {
     font-size: 35px;
+    width: 4em;
 }
 button.current{
     color: white;
