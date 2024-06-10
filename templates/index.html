@@ -15,51 +15,44 @@
         </tr>
     </table>
     <div class = "bar">
-
-
-    <table style = "border-collapse: separate;border: 0px solid #E8175D;" width = "100%">
-        <tr>
-            <th style = "padding: 8px;">
-                <form action = "/" method="post">
-                    {% if not fav %}
-                    <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D;width: 100px;" >
-                        Favorites
-                    </button>
-                    {% else %}
-                    <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D;width: 65px;">
-                        Back
-                    </button>
-                    {% endif %}
-                </form>
-            </th>
-            <th style = "padding: 8px;">
-                <form action = "/" method="post">
-                    {% if not use %}
-                    <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D;width: 75px;">
-                        Usage
-                    </button>
-                    {% else %}
-                    <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D;width: 65px;">
-                        Back
-                    </button>
-                    {% endif %}
-                </form>
-            </th>
-            <th style = "padding: 8px;">
-                <form action = "/" method="post">
-                    {% if not recent %}
-                    <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D;width: 95px;">
-                        Recency
-                    </button>
-                    {% else %}
-                    <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D;width: 65px;">
-                        Back
-                    </button>
-                    {% endif %}
-                </form>
-            </th>
-        </tr>
-    </table>
+        <div class = "i1">
+        <form action = "/" method="post">
+            {% if not fav %}
+            <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D;width: 110px;" >
+                Favorites
+            </button>
+            {% else %}
+            <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D;width: 69px;">
+                Back
+            </button>
+            {% endif %}
+        </form>
+            </div>
+            <div class = "i1">
+        <form action = "/" method="post">
+            {% if not use %}
+            <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D;width: 80px;">
+                Usage
+            </button>
+            {% else %}
+            <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D;width: 69px;">
+                Back
+            </button>
+            {% endif %}
+        </form>
+                </div>
+                <div class = "i1">
+        <form action = "/" method="post">
+            {% if not recent %}
+            <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D;width: 105px;">
+                Recency
+            </button>
+            {% else %}
+            <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D;width: 69px;">
+                Back
+            </button>
+            {% endif %}
+        </form></div>
         </div>
     <div class = "cur">
     {% if current %}
