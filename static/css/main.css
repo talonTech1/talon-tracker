@@ -59,8 +59,9 @@ button {
     border-radius: 10px;
 }
 button.top {
-    font-size: 35px;
-    width: 4em;
+    text-align: left;
+    font-size: 25px;
+
 }
 button.current{
     color: white;
