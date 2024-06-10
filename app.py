@@ -16,6 +16,7 @@ locations = db["Locations"]
 f1 = False
 r1 = False
 u1 = False
+s1 = False
 #chrome://net-internals/#sockets
 def convertUTC(dt):
     # datetime(year, month, day, hour, minute, second, microsecond)
@@ -98,6 +99,7 @@ def index():
     global f1
     global r1
     global u1
+    global s1
     sleep(0.15)
     if request.method == "POST":
         try:
@@ -161,17 +163,29 @@ def index():
                     u1 = False
         except:
             pass
-    if f1:
-        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
+        try:
+            if request.form["viewLoc"]:
+                if request.form["viewLoc"] == "T":
+                    s1 = True
+                else:
+                    s1 = False
+        except:
+            pass
+    if not s1:
+        return render_template('index.html', show=s1, fav=f1, use=u1, recent=r1,
+                               locs=[],
+                               current=locations.find_one({"current": True}))
+    elif f1:
+        return render_template('index.html',show= s1, fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
                                current=locations.find_one({"current": True}))
 
     elif r1:
-        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
+        return render_template('index.html',show =s1, fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
                                current=locations.find_one({"current": True}))
     elif u1:
-        return render_template('index.html', fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
+        return render_template('index.html',show=s1,  fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
                                current=locations.find_one({"current": True}))
-    return render_template('index.html',fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
+    return render_template('index.html', show=s1, fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
 
 
 @app.route('/logout')
