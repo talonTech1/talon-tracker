@@ -9,30 +9,33 @@
     justify-content: space-around;
 }
 .bar {
-    width: auto;
-    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 450px;
 }
 .cur {
-    width: auto;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
     height: 400px;
     flex: 100%;
 }
 .add {
-    width: auto;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
     flex: 50%;
     height: 100px;
 }
 .show {
-    width: auto;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
     flex: 50%;
     height: 100px;
 }
 .locations {
-    width: auto;
-    max-width: 500px;
+    width: 100%;
+    max-width: 450px;
     flex: 50%;
     height: 100px;
 }
@@ -60,7 +63,7 @@ button {
 }
 button.top {
     text-align: left;
-    font-size: 25px;
+    font-size: 27px;
 }
 button.current{
     color: white;
