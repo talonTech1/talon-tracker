@@ -22,11 +22,11 @@
             <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not fav %}
-                    <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D">
+                    <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D;width: 100px;" >
                         Favorites
                     </button>
                     {% else %}
-                    <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D">
+                    <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D;width: 65px;">
                         Back
                     </button>
                     {% endif %}
@@ -35,11 +35,11 @@
             <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not use %}
-                    <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D">
+                    <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D;width: 75px;">
                         Usage
                     </button>
                     {% else %}
-                    <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D">
+                    <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D;width: 65px;">
                         Back
                     </button>
                     {% endif %}
@@ -48,11 +48,11 @@
             <th style = "padding: 8px;">
                 <form action = "/" method="post">
                     {% if not recent %}
-                    <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D">
+                    <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D;width: 95px;">
                         Recency
                     </button>
                     {% else %}
-                    <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D">
+                    <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D;width: 65px;">
                         Back
                     </button>
                     {% endif %}
@@ -107,7 +107,7 @@
 
 
         <tr bgcolor = "#000000">
-            <td style = "font-size: 50px" >
+            <td style = "font-size: 30px" >
                 <b>No Location/Unavailable</b>
             </td>
         </tr>
@@ -155,7 +155,7 @@
                 </form>
             </td>
             <td width = "35%" style="font-size:25px;">
-                {{loc['time'].month}}/{{current['time'].day}}
+                {{loc['time'].month}}/{{loc['time'].day}}
                 {{loc['time'].strftime("%-H:%M")}}
             </td>
             <td width = "17%">
