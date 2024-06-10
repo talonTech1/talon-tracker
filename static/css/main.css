@@ -1,16 +1,44 @@
 .phone-screen {
-  width: 100%;
-  max-width: 500px;
-  height: 90vh;
-  margin: 5vh auto;
-  display: flex;
-  flex-direction: column;
-  color: #f6f6f6;
-  background-color: #000000;
+    width: 100%;
+    max-width: 500px;
+    margin: 5vh auto;
+    display: flex;
+    flex-direction: column;
+    color: #f6f6f6;
+    background-color: #000000;
+    justify-content: space-around;
 }
-
-
-
+.bar {
+    width: 100%;
+    height: 30%;
+    max-width: 500px;
+    flex: 50%;
+    justify-content: center;
+}
+.cur {
+    width: 100%;
+    max-width: 500px;
+    flex: 50%;
+    height: 400px;
+}
+.add {
+    width: 100%;
+    max-width: 500px;
+    flex: 50%;
+    height: 100px;
+}
+.show {
+    width: 100%;
+    max-width: 500px;
+    flex: 50%;
+    height: 100px;
+}
+.locations {
+    width: 100%;
+    max-width: 500px;
+    flex: 50%;
+    height: 100px;
+}
 
 
 
@@ -52,7 +80,7 @@ td {
     font-size: 28px
 }
 table {
-  border-collapse: separate;
-  border-radius: 12px;
-  border: 3px solid #E8175D;
+    border-collapse: separate;
+    border-radius: 12px;
+    border: 3px solid #E8175D;
 }
