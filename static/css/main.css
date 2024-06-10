@@ -1,6 +1,6 @@
 .phone-screen {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     margin: 5vh auto;
     display: flex;
     flex-direction: column;
@@ -61,7 +61,6 @@ button {
 button.top {
     text-align: left;
     font-size: 25px;
-
 }
 button.current{
     color: white;
