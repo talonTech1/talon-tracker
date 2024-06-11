@@ -101,12 +101,13 @@ def login():
         session['logged_in'] = True
         flash('You were logged in.')
         return redirect('/')
-    
+
     if request.method == 'POST':
         if request.form['password'] != 'blair123':
             error = 'Invalid. Try Again.'
         else:
             session['logged_in'] = True
+            addIP(ip)
             flash('You were logged in.')
             return redirect('/')
     return render_template('login.html', error=error)
@@ -120,11 +121,11 @@ def index():
     global s1
     sleep(0.15)
 
-    
-    
-    
-    
-    
+
+
+
+
+
     if request.method == "POST":
         try:
             if request.form['addLoc']:
