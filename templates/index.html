@@ -65,16 +65,16 @@
     <br>
     <div class = "cur">
     {% if current %}
-    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D;width: 100%">
+    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D;">
         <tr bgcolor = "#000000"> <!-- here -->
-            <td width = "50%">
+            <td width = "10px">
                 <form action = "/" method="post">
                 <button name = "setCurrent" value = "{{current['locN']}}F" class = "current">
                     {{current['locN']}}
                 </button>
                 </form>
             </td>
-            <td width = "25%">
+            <td width = "1">
                 <form action = "/" method="post">
                     <!-- should be made icons later, these are just placeholder -->
                 {% if current['f'] %}
@@ -87,7 +87,7 @@
                 {% endif %}
                 </form>
             </td>
-            <td width = "25%">
+            <td width = "1">
                 <form action = "/" method="post">
                     <button class = "current" name = "remove" value ="{{ current['locN'] }}" >
                     🗑️
