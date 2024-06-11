@@ -11,6 +11,7 @@ app.secret_key = 'my precious'
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
 locations = db["LocationsCopy"]
+ips = db["ALLOWEDIPS"]
 
 
 f1 = False
@@ -33,6 +34,9 @@ def convertUTC(dt):
             d -= 1
 
     return datetime(y,m,d,newH,minute)
+
+def addIP(ip):
+    ips.insert_one({"ipnum":ip})
 def removeLoc(locationN):
     locations.delete_one({"locN" : locationN.upper()})
 def checkIfExisting(locationN):
@@ -89,8 +93,17 @@ def login_required(f):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0].split(",")[0]
+    else:
+        ip = request.remote_addr
+    if ips.find_one({"ipnum":ip}):
+        session['logged_in'] = True
+        flash('You were logged in.')
+        return redirect('/')
+    
     if request.method == 'POST':
-        if request.form['password'] != 'blair':
+        if request.form['password'] != 'blair123':
             error = 'Invalid. Try Again.'
         else:
             session['logged_in'] = True
@@ -101,11 +114,102 @@ def login():
 @app.route("/", methods= ["POST","GET"])
 @login_required
 def index():
-    if request.headers.getlist("X-Forwarded-For"):
-       ip = request.headers.getlist("X-Forwarded-For")[0]
-    else:
-       ip = request.remote_addr
-    return ip
+    global f1
+    global r1
+    global u1
+    global s1
+    sleep(0.15)
+
+    
+    
+    
+    
+    
+    if request.method == "POST":
+        try:
+            if request.form['addLoc']:
+                return render_template('add.html')
+        except KeyError:
+            pass
+        try:
+            if request.form['locate']:
+                addLoc(request.form['locate'])
+        except KeyError:
+            pass
+        try:
+            if request.form['setCurrent']:
+                if request.form['setCurrent'][-1] == "F":
+                    removeCurrent(request.form['setCurrent'][:-1])
+                else:
+                    setToCurrentLoc(request.form['setCurrent'][:-1])
+        except KeyError:
+            pass
+        try:
+            if request.form['remove']:
+                removeLoc(request.form['remove'])
+        except KeyError:
+            pass
+        try:
+            if request.form['setFav']:
+                if request.form['setFav'][-1] == "T":
+                    setFavorite(request.form['setFav'][:-1],True)
+                else:
+                    setFavorite(request.form['setFav'][:-1], False)
+        except KeyError:
+            pass
+        try:
+            if request.form["showFavs"]:
+                if request.form["showFavs"] == "T":
+                    f1 = True
+                    r1 = False
+                    u1 = False
+                else:
+                    f1 = False
+        except:
+            pass
+        try:
+            if request.form["showRecents"]:
+                if request.form["showRecents"] == "T":
+                    r1 = True
+                    f1 = False
+                    u1 = False
+                else:
+                    r1 = False
+        except:
+            pass
+        try:
+            if request.form["showUsage"]:
+                if request.form["showUsage"] == "T":
+                    r1 = False
+                    f1 = False
+                    u1 = True
+                else:
+                    u1 = False
+        except:
+            pass
+        try:
+            if request.form["viewLoc"]:
+                if request.form["viewLoc"] == "T":
+                    s1 = True
+                else:
+                    s1 = False
+        except:
+            pass
+    if not s1:
+        return render_template('index.html', show=s1, fav=f1, use=u1, recent=r1,
+                               locs=[],
+                               current=locations.find_one({"current": True}))
+    elif f1:
+        return render_template('index.html',show= s1, fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
+                               current=locations.find_one({"current": True}))
+
+    elif r1:
+        return render_template('index.html',show =s1, fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
+                               current=locations.find_one({"current": True}))
+    elif u1:
+        return render_template('index.html',show=s1,  fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
+                               current=locations.find_one({"current": True}))
+    return render_template('index.html', show=s1, fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
 
 
 @app.route('/logout')
