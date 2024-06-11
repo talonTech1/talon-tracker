@@ -1,7 +1,7 @@
 .phone-screen {
     width: 100%;
     max-width: 450px;
-    margin: 5vh auto;
+    margin: 2vh auto;
     display: flex;
     flex-direction: column;
     color: #f6f6f6;
