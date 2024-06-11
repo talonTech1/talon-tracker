@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="apple-touch-icon" href="{{url_for('static', filename='appicon.jpg') }}">
 
 {% endblock %}
 
@@ -11,7 +12,7 @@
     <table style = "border: 0px">
         <tr align = "right">
             <td align = "right">
-                <h1 align = "center">WHERE'S MS. BLAIR?</h1>
+                <h2 align = "center">WHERE'S MS. BLAIR?</h2>
             </td>
         </tr>
     </table>
@@ -64,7 +65,7 @@
     <br>
     <div class = "cur">
     {% if current %}
-    <table bgcolor = "#E8175D" style = "border: 6px solid #E8175D;width: 100%">
+    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D;width: 100%">
         <tr bgcolor = "#000000"> <!-- here -->
             <td width = "50%">
                 <form action = "/" method="post">
@@ -93,7 +94,8 @@
                     </button>
                 </form>
             </td>
-    </table>Last Updated: {{current['time'].strftime('%-I:%M%p')}}
+    </table>
+        <p style = "font-size: 20px"> LAST UPDATED: {{current['time'].strftime('%-I:%M%p')}} </p>
     {% else %}
     <table style = "border-width:3px;border-color:#E8175D;border-style:solid;" bgcolor = "#E8175D" >
 
@@ -107,13 +109,12 @@
     {% endif %}
 
     </div>
-    <br>
     <div class = "add">
     <table style = "border: 0px" align = "center">
         <tr align = "center">
             <td>
        <form action = "/" method="post">
-        <button name = "addLoc" value = True style = "background-color: #E8175D; border: 3px solid black; font-size: 45px;" >
+        <button name = "addLoc" value = True style = "background-color: #E8175D; border: 3px solid black; font-size: 40px;" >
         Add Location
         </button>
         </form>
@@ -125,10 +126,10 @@
     <div class = "show">
         <form action = "/" method="post">
             {% if show %}
-                    <button name = "viewLoc" value = "F" style = "background-color: #E8175D; border: 3px solid black; font-size: 27px;" >
+                    <button name = "viewLoc" value = "F" style = "background-color: #E8175D; border: 3px solid black; font-size: 23px;" >
                     Hide Locations
                     </button>
-            {% else %} <button name = "viewLoc" value = "T" style = "background-color: #E8175D; border: 3px solid black; font-size: 27px;" >
+            {% else %} <button name = "viewLoc" value = "T" style = "background-color: #E8175D; border: 3px solid black; font-size: 23px;" >
                     Show Locations
                     </button>
             {% endif %}
