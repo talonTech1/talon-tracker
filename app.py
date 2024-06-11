@@ -23,7 +23,7 @@ def convertUTC(dt):
     newH = dt.hour - 4
     y,m,d,minute = dt.year,dt.month,dt.day,dt.minute
     if newH < 0:
-        newH = 24- newH
+        newH = 24 + newH
         if dt.day < 0:
             if dt.month < 0:
                 m = 12
@@ -40,6 +40,7 @@ def removeCurrent(locationN):
 def setToCurrentLoc(locationN):
     n = locationN.upper()
     d = convertUTC(datetime.utcnow())
+
     currentCount = locations.find_one({"locN":n})["count"]
     locations.update_one({"locN": n}, {"$set": {"time": d}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
