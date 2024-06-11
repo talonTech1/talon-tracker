@@ -10,7 +10,7 @@ app.secret_key = 'my precious'
 # login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
-locations = db["LocationsCopy"]
+locations = db["Locations"]
 ips = db["ALLOWEDIPS"]
 
 
