@@ -10,7 +10,7 @@ app.secret_key = 'my precious'
 # login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
-locations = db["Locations"]
+locations = db["LocationsCopy"]
 
 
 f1 = False
@@ -52,6 +52,8 @@ def setToCurrentLoc(locationN):
 def addLoc(locationN, fav = False):
     n = locationN.upper()
     d = convertUTC(datetime.utcnow())
+    if n.isnumeric() and len(n) == 4:
+        n = "ROOM " + n
     if checkIfExisting(locationN):
         setToCurrentLoc(n)
         return False
@@ -88,7 +90,7 @@ def login_required(f):
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['password'] != 'blair123':
+        if request.form['password'] != 'blair':
             error = 'Invalid. Try Again.'
         else:
             session['logged_in'] = True
