@@ -54,6 +54,7 @@
             {% endif %}
         </form></div>
         </div>
+    <br>
     <div class = "cur">
     {% if current %}
     <table bgcolor = "#E8175D" style = "border: 6px solid #E8175D;">
@@ -65,14 +66,6 @@
                 </button>
                 </form>
             </td>
-
-            <td width = "32%" style="font-size:30px;">
-
-                {{current['time'].month}}/{{current['time'].day}}
-                <br>
-                {{current['time'].strftime("%-I:%M %p")}}
-            </td>
-            <tr bgcolor = "#000000">
             <td width = "18%">
                 <form action = "/" method="post">
                     <!-- should be made icons later, these are just placeholder -->
@@ -93,20 +86,20 @@
                     </button>
                 </form>
             </td>
-        </tr>
     </table>
     {% else %}
     <table style = "border-width:3px;border-color:#E8175D;border-style:solid;" bgcolor = "#E8175D" >
 
 
         <tr bgcolor = "#000000">
-            <td style = "font-size: 30px" >
+            <td style = "font-size: 32px" width = "100%">
                 <b>No Location/Unavailable</b>
             </td>
         </tr>
     </table>
     {% endif %}
     </div>
+    <br>
     <div class = "add">
     <table style = "border: 0px" align = "center">
         <tr align = "center">
@@ -149,7 +142,7 @@
             </td>
             <td width = "35%" style="font-size:25px;">
                 {{loc['time'].month}}/{{loc['time'].day}}
-                {{loc['time'].strftime("%-H:%M")}}
+                {{loc['time'].strftime("%-I:%M")}}
             </td>
             <td width = "17%">
                 <form action = "/" method="post">
