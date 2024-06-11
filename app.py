@@ -52,6 +52,8 @@ def setToCurrentLoc(locationN):
 def addLoc(locationN, fav = False):
     n = locationN.upper()
     d = convertUTC(datetime.utcnow())
+    if n.isnumeric() and len(n) == 4:
+        n = "ROOM " + n
     if checkIfExisting(locationN):
         setToCurrentLoc(n)
         return False
