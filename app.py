@@ -101,7 +101,11 @@ def login():
 @app.route("/", methods= ["POST","GET"])
 @login_required
 def index():
-    return request.remote_addr
+    if request.headers.getlist("X-Forwarded-For"):
+       ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+       ip = request.remote_addr
+    return ip
 
 
 @app.route('/logout')
