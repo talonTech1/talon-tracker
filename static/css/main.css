@@ -8,6 +8,13 @@
     background-color: #000000;
     justify-content: space-around;
 }
+.cur {
+    width: 100%;
+    max-width: 450px;
+    height: 400px;
+    flex: 100%;
+    justify-content: space-around;
+}
 .bar {
     display: flex;
     flex-direction: row;
