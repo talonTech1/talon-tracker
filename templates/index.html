@@ -17,16 +17,16 @@
         </tr>
     </table>
     <div class = "bar">
-        <table>
+        <table style = "border: 0px solid yellow;">
             <tr>
                 <td width = 1>
                     <form action = "/" method="post">
                     {% if not fav %}
-                    <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D;width: 110px;" >
+                    <button class = "top" name = "showFavs" value = "T" style = "background-color: #E8175D;" >
                           Favorites
                          </button>
                     {% else %}
-                 <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D;width: 69px;">
+                 <button class = "top" name = "showFavs" value = "F" style = "background-color: #E8175D;">
                       Back
                         </button>
                      {% endif %}
@@ -36,11 +36,11 @@
 
         <form action = "/" method="post">
             {% if not use %}
-            <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D;width: 80px;">
+            <button class = "top" name = "showUsage" value = "T" style = "background-color: #E8175D;">
                 Usage
             </button>
             {% else %}
-            <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D;width: 69px;">
+            <button class = "top" name = "showUsage" value = "F" style = "background-color: #E8175D;">
                 Back
             </button>
             {% endif %}
@@ -49,11 +49,11 @@
                 <td width = 1>
                     <form action = "/" method="post">
             {% if not recent %}
-            <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D;width: 105px;">
+            <button class = "top" name = "showRecents" value = "T" style = "background-color: #E8175D;">
                 Recency
             </button>
             {% else %}
-            <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D;width: 69px;">
+            <button class = "top" name = "showRecents" value = "F" style = "background-color: #E8175D;">
                 Back
             </button>
             {% endif %}
