@@ -46,7 +46,8 @@ def removeCurrent(locationN):
 def setToCurrentLoc(locationN):
     n = locationN.upper()
     d = convertUTC(datetime.utcnow())
-
+    if n.isnumeric() and len(n) == 4:
+        n = "ROOM " + n
     currentCount = locations.find_one({"locN":n})["count"]
     locations.update_one({"locN": n}, {"$set": {"time": d}})
     locations.update_one({"locN": n}, {"$set": {"count": currentCount + 1}})
