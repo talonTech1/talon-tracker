@@ -10,7 +10,8 @@ app.secret_key = 'my precious'
 # login required decorator
 cluster = MongoClient("mongodb+srv://smcs2026talontech:lUxhcscK1PDAhJxm@talontracker.k6uzv05.mongodb.net/?retryWrites=true&w=majority&appName=TalonTracker")
 db = cluster["Tracker"]
-locations = db["Locations"]
+locations = db["LocationsCopy"]
+ips = db["ALLOWEDIPS"]
 
 
 f1 = False
@@ -33,6 +34,9 @@ def convertUTC(dt):
             d -= 1
 
     return datetime(y,m,d,newH,minute)
+
+def addIP(ip):
+    ips.insert_one({"ipnum":ip})
 def removeLoc(locationN):
     locations.delete_one({"locN" : locationN.upper()})
 def checkIfExisting(locationN):
@@ -89,11 +93,21 @@ def login_required(f):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0].split(",")[0]
+    else:
+        ip = request.remote_addr
+    if ips.find_one({"ipnum":ip}):
+        session['logged_in'] = True
+        flash('You were logged in.')
+        return redirect('/')
+
     if request.method == 'POST':
         if request.form['password'] != 'blair123':
             error = 'Invalid. Try Again.'
         else:
             session['logged_in'] = True
+            addIP(ip)
             flash('You were logged in.')
             return redirect('/')
     return render_template('login.html', error=error)
@@ -106,6 +120,12 @@ def index():
     global u1
     global s1
     sleep(0.15)
+
+
+
+
+
+
     if request.method == "POST":
         try:
             if request.form['addLoc']:

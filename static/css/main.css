@@ -65,7 +65,7 @@ button {
     border: 1px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
     border-radius: 10px;
 }
 button.top {
@@ -102,4 +102,3 @@ table {
 p{
    margin: 8px 0;
 }
-

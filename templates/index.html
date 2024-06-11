@@ -65,7 +65,7 @@
     <br>
     <div class = "cur">
     {% if current %}
-    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D;">
+    <table bgcolor = "#E8175D" style = "border: 3px solid #E8175D;width: 95%;">
         <tr bgcolor = "#000000"> <!-- here -->
             <td width = "1">
                 <form action = "/" method="post">
@@ -144,7 +144,7 @@
 
             <td width = "50%">
                 <form action = "/" method="post">
-                <button name = "setCurrent" value = "{{ loc['locN'] }}T" class = "background-color: #f0ead6">
+                <button name = "setCurrent" value = "{{ loc['locN'] }}T" class = "background-color: #f0ead6" style = "font-size: calc(25px + 6 * ((90vw - 320px) / 680));;">
                     {{loc['locN']}}
                 </button>
                 </form>
