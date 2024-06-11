@@ -65,7 +65,7 @@ button {
     border: 1px #f0ead6;
     font-family: serif;
     text-align: center;
-    font-size: 28px;
+    font-size: 30px;
     border-radius: 10px;
 }
 button.top {
@@ -73,6 +73,7 @@ button.top {
     font-size: 27px;
     flex: 1;
     margin: 0 5px;
+    width: auto;
 }
 button.current{
     color: white;
@@ -95,4 +96,6 @@ table {
     border-collapse: separate;
     border-radius: 12px;
     border: 3px solid #E8175D;
+    overflow-x: auto;
+    table-layout: auto;
 }
