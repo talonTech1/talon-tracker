@@ -9,7 +9,7 @@
     justify-content: space-around;
 }
 .cur {
-    width: 100%;
+    width: 90%;
     max-width: 450px;
     height: 400px;
     flex: 100%;
@@ -70,7 +70,8 @@ button {
 }
 button.top {
     text-align: left;
-    font-size: 27px;
+    font-size: 15px;
+    padding: 10px 24px;
     flex: 1;
     margin: 0 5px;
     width: auto;
@@ -96,6 +97,5 @@ table {
     border-collapse: separate;
     border-radius: 12px;
     border: 3px solid #E8175D;
-    overflow-x: auto;
-    table-layout: auto;
+
 }
