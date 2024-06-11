@@ -29,6 +29,8 @@ def convertUTC(dt):
                 m = 12
                 y -= 1
             d = monthrange(y,m)
+        else:
+            d -= 1
 
     return datetime(y,m,d,newH,minute)
 def removeLoc(locationN):
