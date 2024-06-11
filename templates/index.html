@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="apple-touch-icon" href="{{url_for('static', filename='appicon.jpg') }}">
+
 {% endblock %}
 
 {% block body %}
@@ -98,6 +100,7 @@
         </tr>
     </table>
     {% endif %}
+        Last Updated: {{current['time'].strftime('%-I:%M%p')}}
     </div>
     <br>
     <div class = "add">
@@ -133,18 +136,14 @@
         {% if not loc['current'] %}
             <tr bgcolor = "#000000">
 
-            <td width = "31%">
+            <td width = "50%">
                 <form action = "/" method="post">
                 <button name = "setCurrent" value = "{{ loc['locN'] }}T" class = "background-color: #f0ead6">
                     {{loc['locN']}}
                 </button>
                 </form>
             </td>
-            <td width = "35%" style="font-size:25px;">
-                {{loc['time'].month}}/{{loc['time'].day}}
-                {{loc['time'].strftime("%-I:%M")}}
-            </td>
-            <td width = "17%">
+            <td width = "25%">
                 <form action = "/" method="post">
                 {% if loc['f'] %}
                     <button name = "setFav" value ="{{ loc['locN'] }}F">
@@ -156,7 +155,7 @@
                 {% endif %}
                 </form>
             </td>
-            <td width = "17%">
+            <td width = "25%">
                 <form action = "/" method="post">
                     <button name = "remove" value ="{{ loc['locN'] }}">
                     🗑️
