@@ -88,7 +88,7 @@ def login_required(f):
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['password'] != 'blair':
+        if request.form['password'] != 'blair123':
             error = 'Invalid. Try Again.'
         else:
             session['logged_in'] = True
