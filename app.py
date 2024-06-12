@@ -223,6 +223,22 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out.')
     return redirect('/')
+def to_integer(dt_time):
+    return f"{calendar.month_name[dt_time.month]} {dt_time.day} { dt_time.strftime('%-I:%M%p') }"
+
+@app.route("/widget", methods= ["POST","GET"])
+def widget():
+    c = locations.find_one({"current": True})
+    rn = datetime.utcnow()
+    if rn.hour > 4 or (rn.hour == 4 and rn.minute == 20):
+        currentLocation = "idk"
+    elif c == None:
+        currentLocation = "UNAVAILABLE"
+        t = to_integer(locations.find_one({"n":"notavail"})["c"])
+    else:
+        currentLocation = c["locN"]
+        t = to_integer(c["time"])
+    return render_template('widget.html',current = currentLocation,time = t)
 
 if __name__ == "__main__":
     app.run(debug=True)
