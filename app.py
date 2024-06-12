@@ -35,6 +35,7 @@ def convertUTC(dt):
 
     return datetime(y,m,d,newH,minute)
 
+
 def addIP(ip):
     ips.insert_one({"ipnum":ip})
 def removeLoc(locationN):
@@ -43,6 +44,7 @@ def checkIfExisting(locationN):
     return locations.find_one({"locN":locationN.upper()}) != None
 def removeCurrent(locationN):
     locations.update_one({"locN": locationN.upper()}, {"$set": {"current": False}})
+    locations.update_one({"n": "notavail"}, {"$set": {"c": convertUTC(datetime.utcnow())}})
 def setToCurrentLoc(locationN):
     n = locationN.upper()
     d = convertUTC(datetime.utcnow())
@@ -149,6 +151,7 @@ def index():
         try:
             if request.form['remove']:
                 removeLoc(request.form['remove'])
+                locations.update_one({"n": "notavail"}, {"$set": {"c": convertUTC(datetime.utcnow())}})
         except KeyError:
             pass
         try:
@@ -198,20 +201,20 @@ def index():
         except:
             pass
     if not s1:
-        return render_template('index.html', show=s1, fav=f1, use=u1, recent=r1,
+        return render_template('index.html', backup = locations.find_one({"n":"notavail"})["c"], show=s1, fav=f1, use=u1, recent=r1,
                                locs=[],
                                current=locations.find_one({"current": True}))
     elif f1:
-        return render_template('index.html',show= s1, fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
+        return render_template('index.html', backup = locations.find_one({"n":"notavail"})["c"],show= s1, fav=f1, use=u1, recent=r1, locs=reversed(list(locations.find({"f": True}))),
                                current=locations.find_one({"current": True}))
 
     elif r1:
-        return render_template('index.html',show =s1, fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
+        return render_template('index.html', backup = locations.find_one({"n":"notavail"})["c"],show =s1, fav=f1, use=u1, recent=r1, locs=sortbyRecent(list(locations.find())),
                                current=locations.find_one({"current": True}))
     elif u1:
-        return render_template('index.html',show=s1,  fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
+        return render_template('index.html', backup = locations.find_one({"n":"notavail"})["c"],show=s1,  fav=f1, use=u1, recent=r1, locs=sortbyUsage(list(locations.find())),
                                current=locations.find_one({"current": True}))
-    return render_template('index.html', show=s1, fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
+    return render_template('index.html',  backup = locations.find_one({"n":"notavail"})["c"],show=s1, fav=f1,use=u1,recent=r1, locs=reversed(list(locations.find())),current=locations.find_one({"current" : True}))
 
 
 @app.route('/logout')
