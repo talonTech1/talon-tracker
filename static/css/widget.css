@@ -1,0 +1,35 @@
+body {
+    text-align: center;
+    margin:0
+    font-family: serif;
+    width = auto;
+    font-size: 30px;
+}
+button {
+    color: white;
+    background-color: #000000;
+    border: 1px #f0ead6;
+    font-family: serif;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 10px;
+}
+button.current{
+    color: white;
+    font-weight: bold;
+    background-color: #000000;
+    border: 2px #f0ead6;
+    font-family: serif;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 12px;
+}
+td {
+    text-align: center;
+    height: 65px;
+}
+table {
+  border-collapse: separate;
+  border-radius: 12px;
+  border: 3px solid #E8175D;
+}
