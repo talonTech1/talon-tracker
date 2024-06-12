@@ -95,8 +95,9 @@
                 </form>
             </td>
     </table>
-        <p style = "font-size: 20px"> LAST UPDATED: {{current['time'].strftime('%-I:%M%p')}} </p>
+
     {% else %}
+
     <table style = "border-width:3px;border-color:#E8175D;border-style:solid;" bgcolor = "#E8175D" >
 
 
@@ -107,7 +108,11 @@
         </tr>
     </table>
     {% endif %}
-
+    {% if current['time'] %}
+        <p style = "font-size: 20px"> LAST UPDATED: {{current['time'].strftime('%-I:%M%p')}} </p>
+        {% else %}
+        <p style = "font-size: 20px"> LAST UPDATED: {{backup.strftime('%-I:%M%p')}} </p>
+        {% endif %}
     </div>
     <div class = "add">
     <table style = "border: 0px" align = "center">
@@ -139,7 +144,7 @@
     <div class = "locations">
     <table bgcolor = "#E8175D">
         {% for loc in locs %}
-        {% if not loc['current'] %}
+        {% if not loc['current'] and loc['locN']%}
             <tr bgcolor = "#000000">
 
             <td width = "50%">
