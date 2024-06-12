@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from time import sleep
 from functools import wraps
-from calendar import monthrange
+import monthrange,month_name
 app.secret_key = 'my precious'
 
 # login required decorator
@@ -224,15 +224,12 @@ def logout():
     flash('You were logged out.')
     return redirect('/')
 def to_integer(dt_time):
-    return f"{calendar.month_name[dt_time.month]} {dt_time.day} { dt_time.strftime('%-I:%M%p') }"
-
+    return f"{month_name[dt_time.month]} {dt_time.day} { dt_time.strftime('%-I:%M%p') }"
 @app.route("/widget", methods= ["POST","GET"])
 def widget():
     c = locations.find_one({"current": True})
     rn = datetime.utcnow()
-    if rn.hour > 4 or (rn.hour == 4 and rn.minute == 20):
-        currentLocation = "idk"
-    elif c == None:
+    if c == None:
         currentLocation = "UNAVAILABLE"
         t = to_integer(locations.find_one({"n":"notavail"})["c"])
     else:
