@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name = "viewport" content = "wide=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+    <meta http-equiv="refresh" content="7">
+</head>
+<body text-align = "center" style = "background-color:#1c4587">
+    <div class = "image-container">
+    <img src = "{{url_for('static', filename='uglybums.gif')}}" alt = "thing">
+        <div class = "title">
+            <b>Where's Ms. Blair?</b>
+        </div>
+        <div class = "overlay-text">
+            <b>{{current}}</b>
+        </div>
+        <div class = "time-stamp">
+            <b>{{time}}</b>
+        </div>
+    </div>
+</body>
+</html>
