@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from time import sleep
 from functools import wraps
-import monthrange,month_name
+from calendar import monthrange,month_name
 app.secret_key = 'my precious'
 
 # login required decorator
