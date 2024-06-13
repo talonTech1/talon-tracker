@@ -71,12 +71,14 @@ def addLoc(locationN, fav = False):
     add = {"locN":n,"time":d,"count":1,"f":fav,"current":True}
     locations.insert_one(add)
     return True
-def setFavorite(locationN,fav):
-    n = locationN.upper()
-    locations.update_one({"locN": n}, {"$set": {"f": fav}})
 def sortbyUsage(li):
     # return (list(locations.find().sort("count")))
+    li = [x for x in li if "count" in x]
     return sorted(li, key = lambda x: x["count"], reverse=True)
+def sortbyRecent(li):
+    # return (list(locations.find().sort("time")))
+    li = [x for x in li if "time" in x]
+    return sorted(li, key = lambda x: x["time"],reverse=True)
 def sortbyRecent(li):
     # return (list(locations.find().sort("time")))
     return sorted(li, key = lambda x: x["time"],reverse=True)
