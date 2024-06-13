@@ -79,9 +79,6 @@ def sortbyRecent(li):
     # return (list(locations.find().sort("time")))
     li = [x for x in li if "time" in x]
     return sorted(li, key = lambda x: x["time"],reverse=True)
-def sortbyRecent(li):
-    # return (list(locations.find().sort("time")))
-    return sorted(li, key = lambda x: x["time"],reverse=True)
 
 def login_required(f):
     @wraps(f)
