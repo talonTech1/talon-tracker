@@ -13,5 +13,3 @@ pytz==2024.1
 Werkzeug==3.0.3
 zipp==3.18.2
 zope.interface==6.4.post2
-gunicorn==19.7.1
-importlib_metadata==7.1.0
